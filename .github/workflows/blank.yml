@@ -34,4 +34,6 @@ jobs:
       
       - name: Use latest
         if: ${{ steps.version.outputs.comparison-result }} == ">"
-        run: echo "done"
+        run: |
+          echo ${{ steps.version.outputs.comparison-result }}
+          echo ${{ steps.latest-version.outputs.release }}
