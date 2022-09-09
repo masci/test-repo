@@ -33,7 +33,7 @@ jobs:
           compare-to: ${{ steps.latest-version.outputs.release }}
       
       - name: Use latest
-        if: steps.version.outputs.comparison-result == ">"
+        if: ${{ steps.version.outputs.comparison-result }} == ">"
         run: |
           echo ${{ steps.version.outputs.comparison-result }}
           echo ${{ steps.latest-version.outputs.release }}
