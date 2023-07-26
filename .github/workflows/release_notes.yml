@@ -34,7 +34,7 @@ jobs:
           files: releasenotes/notes/*.yaml
 
       - name: Check release notes
-        if: steps.changed-files.outputs.any_changed == 'false'
+        if: steps.changed-files.outputs.any_changed == 'false' && !contains( github.event.pull_request.labels.*.name, 'ignore-for-release-notes')
         run: |
             echo "::error::The release notes file is missing, please add one or attach the label 'ignore-for-release-notes' to this PR."
             exit 1
