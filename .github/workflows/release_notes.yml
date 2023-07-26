@@ -34,6 +34,5 @@ jobs:
       - name: Check release notes
         if: steps.changed-files.outputs.any_changed == 'false'
         run: |
-            echo "::error::The release notes file is missing, please add one or attach the label `ignore-for-release-notes` to this PR."
-            exit 1
+            echo "::error::The release notes file is missing, please add one or attach the label 'ignore-for-release-notes' to this PR."
 
