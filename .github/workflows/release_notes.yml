@@ -34,9 +34,6 @@ jobs:
       - name: Check release notes
         if: steps.changed-files.outputs.any_changed == 'false'
         run: |
+            echo "::error Missing release notes file!::"
             exit 1
 
-      - name: Explain
-        if: failure()
-        run: |
-            echo "::error Missing release notes file!"
