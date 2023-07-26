@@ -34,4 +34,5 @@ jobs:
       - name: Check release notes
         if: steps.changed-files.outputs.any_changed == 'false'
         run: |
-            echo "::error file=app.js,line=1,col=5,endColumn=7::Missing semicolon"
+            echo "::error Missing release notes file!"
+            exit 1
