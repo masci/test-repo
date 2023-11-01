@@ -45,3 +45,4 @@ jobs:
         with:
           bodyFile: "relnotes.md"
           prerelease: ${{ steps.version.outputs.current_pre_release }}
+          allowUpdates: true
