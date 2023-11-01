@@ -5,8 +5,6 @@ on:
   push:
     tags:
       - "v[0-9].[0-9]+.[0-9]+*"
-    branches:
-      - main
 
 jobs:
   generate-notes:
@@ -23,7 +21,7 @@ jobs:
         id: version
         run: |
           echo "current_release=$(cat VERSION.txt)" >> "$GITHUB_OUTPUT"
-          echo "current_pre_release=$(awk -F \- {'print $2'} < VERSION.txt)" >> "$GITHUB_OUTPUT"
+          echo "current_pre_release=$([ -z $(awk -F \- {'print $2'} < VERSION.txt) ] && echo "false" || echo "true")" >> "$GITHUB_OUTPUT"
 
       - name: Install reno
         run: |
@@ -42,3 +40,8 @@ jobs:
       - name: Debug
         run: |
           cat relnotes.md
+
+      - uses: ncipollo/release-action@v1
+        with:
+          bodyFile: "relnotes.md"
+          prerelease: ${{ steps.version.outputs.current_pre_release }}
